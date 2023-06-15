@@ -40,6 +40,7 @@
 import streamlit as st
 import joblib
 import re
+import nltk
 nltk.download('punkt')
 nltk.download('stopwords')
 nltk.download('wordnet')
