@@ -54,7 +54,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 model = joblib.load('rff.pkl')
 
 # Load the TF-IDF vectorizer
-vectorizer = joblib.load('tfidf_vectorizer.pkl')
+vectorizer = joblib.load('tfidf.pkl')
 
 # Define function for sentiment analysis
 def sentiment_analysis(text):
