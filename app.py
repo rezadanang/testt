@@ -1,42 +1,3 @@
-# import streamlit as st
-# import joblib
-# import pandas as pd
-# from sklearn.feature_extraction.text import TfidfVectorizer
-
-# model = joblib.load('rf.pkl')
-
-# def predict_sentiment(text):
-#     # Lakukan preprocessing teks
-#     preprocessed_text = preprocess_text(text)
-    
-#     # Vektorisasi teks
-#     vectorized_text = vectorizer.transform([preprocessed_text])
-    
-#     # Melakukan prediksi sentimen
-#     prediction = model.predict(vectorized_text)
-    
-#     # Mengembalikan hasil prediksi
-#     return prediction[0]
-
-# def main():
-#     # Menambahkan judul aplikasi
-#     st.title("Analisis Sentimen dengan Random Forest")
-    
-#     # Menambahkan input teks
-#     text = st.text_input("Masukkan teks")
-    
-#     if st.button("Prediksi"):
-#         # Melakukan prediksi sentimen
-#         prediction = predict_sentiment(text)
-        
-#         # Menampilkan hasil prediksi
-#         st.write(f"Hasil Prediksi: {prediction}")
-
-
-# if __name__ == "__main__":
-#     main()
-
-
 import streamlit as st
 import joblib
 import re
@@ -90,7 +51,12 @@ def sentiment_analysis(text):
     
     # Map prediction to sentiment label
     sentiment = "Positive" if prediction == 1 else "Negative"
-    
+    if prediction == 1:
+        sentiment = "Positive"
+    elif prediction == 0:
+        sentiment = "Neutral"
+    else :
+        sentiment = "Negative"
     return sentiment
 
 # Streamlit app
