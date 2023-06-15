@@ -50,7 +50,7 @@ from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 
 # Load the trained model
-model = joblib.load('rf.pkl')
+model = joblib.load('rff.pkl')
 
 # Define function for sentiment analysis
 def sentiment_analysis(text):
