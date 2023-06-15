@@ -48,9 +48,13 @@ from nltk.corpus import stopwords
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 # Load the trained model
 model = joblib.load('rff.pkl')
+
+# Load the TF-IDF vectorizer
+vectorizer = joblib.load('tfidf_vectorizer.pkl')
 
 # Define function for sentiment analysis
 def sentiment_analysis(text):
@@ -76,9 +80,12 @@ def sentiment_analysis(text):
     
     # Join the tokens back to form the preprocessed text
     preprocessed_text = ' '.join(tokens)
+
+   # Transform the preprocessed text into TF-IDF vector representation
+    text_vector = vectorizer.transform([preprocessed_text])
     
     # Make prediction using the model
-    prediction = model.predict([preprocessed_text])[0]
+    prediction = model.predict([text_vector])[0]
     
     # Map prediction to sentiment label
     sentiment = "Positive" if prediction == 1 else "Negative"
