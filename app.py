@@ -54,15 +54,15 @@ def sentiment_analysis(text):
     # sentiment = "Positive" if prediction == 1 else "Negative"
     if prediction == 1:
         sentiment = "Positive"
-        image = Image.open('images/positive.png')
+        image = Image.open('./images/positive.PNG')
         st.image(image, width=150)
     elif prediction == 0:
         sentiment = "Neutral"
-        image = Image.open('images/neutral.png')
+        image = Image.open('./images/neutral.PNG')
         st.image(image, width=150)
     else :
         sentiment = "Negative"
-        image = Image.open('images/negative.png')
+        image = Image.open('./images/negative.PNG')
         st.image(image, width=150)
     # return sentiment, prediction
 
