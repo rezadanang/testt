@@ -6,6 +6,7 @@ import numpy as np
 nltk.download('punkt')
 nltk.download('stopwords')
 nltk.download('wordnet')
+from PIL import Image
 from nltk.corpus import stopwords
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 from nltk.tokenize import word_tokenize
@@ -50,33 +51,48 @@ def sentiment_analysis(text):
     prediction = model.predict(text_vector)[0]
     
     # Map prediction to sentiment label
-    sentiment = "Positive" if prediction == 1 else "Negative"
+    # sentiment = "Positive" if prediction == 1 else "Negative"
     if prediction == 1:
         sentiment = "Positive"
+        image = Image.open('./images/positive.png')
+        st.image(image, width=150)
     elif prediction == 0:
         sentiment = "Neutral"
+        image = Image.open('./images/neutral.png')
+        st.image(image, width=150)
     else :
         sentiment = "Negative"
-    return sentiment
+        image = Image.open('./images/negative.png')
+        st.image(image, width=150)
+    # return sentiment, prediction
+
+    st.write(f"Sentiment: {sentiment}")
+    st.write(f"Prediction: {prediction}")
+
 
 # Streamlit app
 def main():
     # Set page title
     st.title('Sentiment Analysis')
+
+    st.sidebar.title('Project Skripsi')
     
     # Get user input text
     user_input = st.text_input("Enter text for sentiment analysis")
     
     # Perform sentiment analysis on button click
-    if st.button('Process'):
+    if st.button('Predict'):
         # Check if input is provided
         # user_input = np.array(dtype=object)
         if user_input:
             # Perform sentiment analysis
             sentiment = sentiment_analysis(user_input)
             
-            # Display result
-            st.write(f"Sentiment: {sentiment}")
+            # # Display result
+            # st.write(f"Sentiment: {sentiment}")
+            
+            
+           
         else:
             st.write("Please enter text for sentiment analysis")
 
