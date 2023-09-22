@@ -14,10 +14,10 @@ from nltk.stem import WordNetLemmatizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 # Load the trained model
-model = joblib.load('rf.pkl')
+model = joblib.load('rf-2.pkl')
 
 # Load the TF-IDF vectorizer
-vectorizer = joblib.load('tfidf_vectorizer.pkl')
+vectorizer = joblib.load('tfidf_vectorizer_1.pkl')
 
 # Define function for sentiment analysis
 def sentiment_analysis(text):
@@ -30,7 +30,7 @@ def sentiment_analysis(text):
     tokens = word_tokenize(text)
     
     # Remove stopwords
-    stop_words = set(stopwords.words('english'))
+    stop_words = set(stopwords.words('indonesian'))
     tokens = [word for word in tokens if word not in stop_words]
     
     # Lemmatize the tokens
@@ -60,7 +60,7 @@ def sentiment_analysis(text):
         sentiment = "Neutral"
         image = Image.open('./images/neutral.PNG')
         st.image(image, width=150)
-    else :
+    elif prediction == -1:
         sentiment = "Negative"
         image = Image.open('./images/negative.PNG')
         st.image(image, width=150)
@@ -75,7 +75,11 @@ def main():
     # Set page title
     st.title('Sentiment Analysis')
 
+    biography = ["Afreza Danang Fathoni", "00000034187"]
+
     st.sidebar.title('Project Skripsi')
+    for text in biography:
+        st.sidebar.text(text)
     
     # Get user input text
     user_input = st.text_input("Enter text for sentiment analysis")
